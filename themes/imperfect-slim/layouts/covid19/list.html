@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="{{ .Page.Language | default "en" }}">
+  {{ partial "head" . }}
+  <body>
+    {{ partial "site-header" . }}
+    <div id="wrapper">
+      {{ partial "site-intro" . }}
+      <main id="site-main">
+        <article class="post">
+          <header>
+            <div class="title">
+              {{ if $.Scratch.Get "h1" }}
+                <h1><a href="{{ .RelPermalink }}">{{ .Title }}</a></h1>
+                {{ $.Scratch.Set "h1" false }}
+              {{ else }}
+                <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+              {{ end }}
+              {{ with .Description }}<p>{{ . }}</p>{{ end }}
+            </div>
+          </header>
+          <div id="content">
+            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+            <style>
+              body{ background-color: #F3F3F3;}
+              .stat { 
+                background-color: #fff;
+                min-height: 180px;
+                border-radius: 10px;
+                color: #545454;
+              } 
+              .infected-bar:hover,
+              .active-bar:hover, 
+              .recover-bar:hover, 
+              .death-bar:hover {
+                cursor: pointer;
+              } 
+              .section-footer { 
+                background-color: #fff; 
+                height: 60px;
+              }
+              .link-github, 
+              .link-github:hover { 
+                color: #61CED4; 
+              } 
+            </style>       
+
+            <header> 
+              <div class="container">
+                <!--<div class="row mt-5">
+                  <div class="col">
+                    <h1 id="title">Informasi Covid 19 Indonesia</h1>
+                  </div>
+                </div>-->
+
+                <div class="row mt-5">
+                  <div class="col-lg-3 col-md-6 col-sm-12 ">
+                    <div class="row mx-0 stat align-self-center align-items-center">
+                      <div class="col-4 offset-1 align-self-center align-items-center">
+                        <img src="/img/main/biru.png" alt="">
+                      </div>
+                      <div class="col-5">
+                        <p class="mb-0">Terinfeksi</p>
+                        <h4 class="mb-0" id="infected"></h4>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-3 col-md-6 col-sm-12 mt-sm-3 mt-md-0 mt-3">
+                    <div class="row mx-0 stat align-self-center align-items-center">
+                      <div class="col-4 offset-1 align-self-center align-items-center">
+                        <img src="/img/main/kuning.png" alt="">
+                      </div>
+                      <div class="col-5">
+                        <p class="mb-0">Aktif</p>
+                        <h4 class="mb-0" id="active"></h4>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-3 col-md-6 col-sm-12 mt-md-3 mt-lg-0 mt-sm-3 mt-3">
+                    <div class="row mx-0 stat align-self-center align-items-center">
+                      <div class="col-4 offset-1 align-self-center align-items-center">
+                        <img src="/img/main/hijau.png" alt="">
+                      </div>
+                      <div class="col-5">
+                        <p class="mb-0">Sembuh</p>
+                        <h4 class="mb-0" id="recovered"></h4>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-3 col-md-6 col-sm-12 mt-md-3 mt-lg-0 mt-sm-3 mt-3">
+                    <div class="row mx-0 stat align-self-center align-items-center">
+                      <div class="col-4 offset-1 align-self-center align-items-center">
+                        <img src="/img/main/merah.png" alt="">
+                      </div>
+                      <div class="col-5">
+                        <p class="mb-0">Meninggal</p>
+                        <h4 class="mb-0" id="deaths"></h4>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row mt-4">
+                  <div class="col">
+                    <div class="container-bar bg-white d-flex" style="height: 180px;">
+                      <div class="bar-stat align-self-center px-4" style="width: 100%;">
+                        <h5 class="bar-title text-center mb-4">
+                        Progress Bar
+                      </h5>
+                      <div class="progress" style="height: 10px;">
+                        <div class="progress-bar bg-info infected-bar" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" data-toggle="tooltip" data-placement="top"></div>
+                      </div>
+                      <div class="progress mt-3" style="height: 10px;">
+                        <div class="progress-bar bg-warning active-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" data-toggle="tooltip" data-placement="top"></div>
+                      </div>
+                      <div class="progress mt-3" style="height: 10px;">
+                        <div class="progress-bar bg-success recover-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" data-toggle="tooltip" data-placement="top"></div>
+                      </div>
+                      <div class="progress mt-3" style="height: 10px;">
+                        <div class="progress-bar bg-danger death-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" data-toggle="tooltip" data-placement="top"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </header>
+
+          <main>
+            <section class="section-content mt-5">
+              <div class="container">
+                <div class="row">
+                  <div class="col content">
+                    <div class="table-responsive">
+                      <table class="table table-bordered bg-white"> 
+                        <thead>
+                          <tr>
+                            <th scope="col">Provinsi</th>
+                            <th class="text-center" scope="col">Positif</th>
+                            <th class="text-center" scope="col">Sembuh</th>
+                            <th class="text-center" scope="col">Meninggal</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </main>
+        
+          </div>
+        </article>
+      </main>
+      {{ partial "site-sidebar" . }}
+      {{ partial "site-footer" . }}
+      {{ partial "scripts" . }}
+    </div>
+  </body>
+</html>

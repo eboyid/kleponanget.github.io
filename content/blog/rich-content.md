@@ -4,7 +4,7 @@ title = "Rich Content"
 date = "2019-03-10"
 description = "A brief description of Hugo Shortcodes"
 tags = ["shortcodes","privacy"]
-categories = [""]
+categories = ["Tutorial"]
 images = ["img/2017/08/pic04.jpg", "img/2014/04/pic01.jpg"]
 +++
 
@@ -35,7 +35,3 @@ Hugo ships with several [Built-in Shortcodes](https://gohugo.io/content-manageme
 <br>
 
 ---
-
-## Vimeo Simple Shortcode
-
-{{< vimeo_simple 48912912 >}}
