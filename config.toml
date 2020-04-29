@@ -14,7 +14,7 @@ disableLanguages        = [""]
   # those sections on the homepage.
   enableCDN             = false
 
-  # Loads CSS and JavaScript files. The variable is an array so that you can load
+  # Loads CSS and Javles. aScript fiThe variable is an array so that you can load
   # multiple/additional files if necessary. The standard theme files can be loaded
   # by adding the value, "default". Default includes the add-on.css and and-on.js.
   # Example: ["default", "/path/to/file"]
@@ -153,10 +153,10 @@ disableLanguages        = [""]
     pre               = "<i class='far fa-envelope'></i>"
     weight            = 6
   [[menu.main]]
-    name              = "Covid19"
-    identifier        = "covid19"
-    url               = "/covid19/"
-    pre               = "<i class='far fa-sitemap'></i>"
+    name              = "Develop"
+    identifier        = "Added Page"
+    url               = "/new-page/"
+    pre               = "<i class='fas fa-bug'></i>"
     weight            = 7
 
 [Languages]
