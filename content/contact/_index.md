@@ -1,13 +1,6 @@
-+++
-title = "Contact"
-type = "contact"
-netlify = false
-emailservice = "formspree.io/example@email.com"
-contactname = "Your name"
-contactemail = "Your Email"
-contactsubject = "Subject"
-contactmessage = "Your Message"
-contactlang = "en"
-contactanswertime = 24
-+++
+---
+title: "Contact"
+date: 2018-07-14T17:09:20+06:00
+description : "This is meta description"
+---
 
